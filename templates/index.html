@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Flash Messages Section -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-messages">
+                    <ul>
+                        {% for category, message in messages %}
+                            <li class="{{ category }}">{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        {% endwith %}
+        
+        <!-- Display Username and Logout -->
+        <div class="user-info">
+            <p>Welcome, {{ current_user.username }}!</p>
+            <a href="/settings" class="settings-icon">⚙️</a>
+            <a href="/logout">Logout</a>
+        </div>
+        
+        <!-- Add Task Button -->
+        <button class="add-task-btn" onclick="toggleTaskForm()">Add Task</button>
+        
+        <!-- Task Form (hidden initially) -->
+        <div id="task-form" class="task-form">
+            <form action="/add_task" method="POST">
+                <label for="task_description">Task Name:</label>
+                <input type="text" id="task_description" name="task_description" required><br><br>
+
+                <label for="due_date">Due Date:</label>
+                <input type="date" id="due_date" name="due_date" required><br><br>
+
+                <label for="category">Category:</label>
+                <select id="category" name="category">
+                    <option value="work">Work</option>
+                    <option value="personal">Personal</option>
+                    <option value="school">School</option>
+                    <option value="other">Other</option>
+                </select><br><br>
+
+                <label for="priority">Priority:</label>
+                <select id="priority" name="priority" required>
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                </select><br><br>
+
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+
+        <!-- Task List Section -->
+        <div class="task-list-section">
+            <h2>To-Do List</h2>
+            <ul class="task-list">
+                {% for task in tasks %}
+                    <li class="task-item">
+                        <form action="/toggle_complete/{{ task.id }}" method="POST" style="display:inline;">
+                            <!-- Checkbox to mark task as complete -->
+                            <input type="checkbox" name="complete" onchange="this.form.submit()" {% if task.completed %}checked{% endif %}>
+                        </form>
+                        {{ task.task_name }} - Due: {{ task.due_date }} - Category: {{ task.category }} - Priority: {{ task.priority }}
+                        <form action="/delete_task/{{ task.id }}" method="POST" style="display:inline;">
+                            <button type="submit" class="delete-btn">Delete</button>
+                        </form>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Function to toggle the visibility of the task form
+        function toggleTaskForm() {
+            var taskForm = document.getElementById("task-form");
+            if (taskForm.style.display === "none" || taskForm.style.display === "") {
+                taskForm.style.display = "block";
+            } else {
+                taskForm.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
