@@ -1,0 +1,158 @@
+/* Basic styling for the whole page */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+}
+
+/* Centering content inside a container */
+.container {
+    width: 60%;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* User info section */
+.user-info {
+    position: relative; /* Allows positioning of child elements */
+    padding-bottom: 10px; /* Add space for the logout link */
+}
+
+/* Welcome message styling */
+.user-info p {
+    margin: 0;
+}
+
+/* Logout link styling */
+.user-info a.logout {
+    display: block; /* Make the link appear on a new line */
+    margin-top: 5px; /* Space below the welcome message */
+    text-decoration: none;
+    color: #007bff; /* Match link color */
+}
+
+.user-info a.logout:hover {
+    color: #0056b3; /* Optional hover effect */
+}
+
+/* Settings icon styling */
+.settings-icon {
+    position: absolute; /* Position relative to .user-info */
+    top: 10px; /* Adjust spacing from the top edge */
+    right: 10px; /* Adjust spacing from the right edge */
+    font-size: 1.5rem; /* Adjust icon size */
+    text-decoration: none;
+    color: inherit; /* Matches text color */
+    cursor: pointer; /* Indicate clickability */
+}
+
+.settings-icon:hover {
+    color: #007bff; /* Optional: Add hover effect */
+}
+/* Home Button Styling */
+.home-button {
+    position: absolute; /* Position it inside the container */
+    top: 10px;
+    left: 10px;
+    font-size: 1.5rem; /* Adjust icon size */
+    text-decoration: none;
+    color: inherit; /* Match text color */
+    cursor: pointer;
+}
+
+.home-button:hover {
+    color: #007bff; /* Optional hover effect */
+}
+
+/* Flash Message Styling */
+.flash-messages {
+    margin: 15px 0;
+    padding: 10px;
+    background-color: #d4edda; /* Light green background for success */
+    color: #155724; /* Dark green text for success */
+    border: 1px solid #c3e6cb;
+    border-radius: 5px;
+}
+
+.flash-messages p {
+    margin: 0;
+    font-size: 14px;
+}
+
+/* Add Task button styling */
+.add-task-btn {
+    display: block;
+    margin: 0 auto 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add-task-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Task Form styling (hidden by default) */
+.task-form {
+    display: none;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #fafafa;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Form element styling */
+label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    display: block;
+}
+
+input[type="text"],
+input[type="date"],
+select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* Task List Section styling */
+.task-list-section {
+    margin-top: 30px;
+}
+
+.task-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.task-item {
+    background-color: #e9ecef;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+}
